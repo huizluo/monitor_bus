@@ -11,7 +11,7 @@ object RedisWriter {
   config.setMaxTotal(20)
   //设置空闲连接
   config.setMaxIdle(10)
-  private val jedisPool = new JedisPool(config, "hadoop5", 6379, 1000)
+  private val jedisPool = new JedisPool(config, "node53", 6379, 1000)
 
   //从连接池中获取jedis对象
 

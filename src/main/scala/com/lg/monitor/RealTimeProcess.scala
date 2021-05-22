@@ -30,7 +30,7 @@ object RealTimeProcess {
     //解析出经纬度数据，写入redis
     //封装为一个case class方便后续获取指定字段的数据
     val busInfoDs: Dataset[BusInfo] = kafkaDs.map(BusInfo(_)).filter(_ != null)
-    //把经纬度数据写入redis
+    //把经纬度数据写入redis|mysql
     busInfoDs.writeStream
       .foreach(new MysqlWriter)
       .outputMode("append")

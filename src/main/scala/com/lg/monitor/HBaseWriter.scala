@@ -15,7 +15,7 @@ object HbaseWriter {
     //获取连接
     val conf: Configuration = HBaseConfiguration.create()
     conf.set("hbase.zookeeper.property.clientPort", "2181")
-    conf.set("hbase.zookeeper.quorum", "hadoop3,hadoop4")
+    conf.set("hbase.zookeeper.quorum", "node51,node52,node53")
     val conn: Connection = ConnectionFactory.createConnection(conf)
     //hbase表名：htb_gps
     val table: Table = conn.getTable(TableName.valueOf("htb_gps"))

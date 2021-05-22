@@ -1,5 +1,7 @@
 package com.lg.test
 
+import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
+
 /**
   * 使用结构化流读取kafka中的数据
   */
@@ -9,10 +11,12 @@ object StructuredKafka {
     val spark: SparkSession = SparkSession.builder().master("local[*]").appName(StructuredKafka.getClass.getName)
       .getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
+
+    import spark.implicits._
     //2 定义读取kafka数据源
     val kafkaDf: DataFrame = spark.readStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "hadoop4:9092")
+      .option("kafka.bootstrap.servers", "node52:9092")
       .option("subscribe", "spark_kafka")
       .load()
     //3 处理数据
